@@ -1,14 +1,16 @@
-const product = {
+import { defineField, defineType } from "sanity";
+
+export default defineType({
   name: "product",
   title: "Products",
   type: "document",
   fields: [
-    {
+    defineField({
       name: "name",
       title: "Name",
       type: "string",
-    },
-    {
+    }),
+    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
@@ -16,8 +18,8 @@ const product = {
         source: "name",
         maxLength: 96,
       },
-    },
-    {
+    }),
+    defineField({
       name: "image",
       title: "Image",
       type: "image",
@@ -31,16 +33,18 @@ const product = {
           type: "string",
         },
       ],
-    },
-    {
+    }),
+    defineField({
       name: "content",
       title: "Content",
       type: "array",
       of: [{ type: "block" }],
-    },
-
-    { name: "language", type: "string", readOnly: true, hidden: true },
+    }),
+    defineField({
+      name: "language",
+      type: "string",
+      readOnly: true,
+      hidden: true,
+    }),
   ],
-};
-
-export default product;
+});
